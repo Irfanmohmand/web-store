@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      toast("😌 Marwa Pamani Da Web Site Ma Saz Ko, Tana Ba za kala khlasegm.");
+      toast("😌 Be patience, web-store is under construction.");
     }, 2000);
 
     return () => clearTimeout(timer);

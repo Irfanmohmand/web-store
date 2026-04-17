@@ -1,7 +1,6 @@
 import User from "@/app/models/UserModel";
 import { dbConnect } from "@/lib/db";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 import cloudinary from "@/lib/cloudinary";
 
 export const POST = async (req) => {
@@ -48,13 +47,11 @@ export const POST = async (req) => {
       imgUrl = result.secure_url;
     }
 
-    const hashPassword = await bcrypt.hash(password, 10);
-
     const user = await User.create({
       name,
       contact,
       email,
-      password: hashPassword,
+      password,
       file: imgUrl,
     });
 

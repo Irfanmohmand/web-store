@@ -1,4 +1,5 @@
 "use client";
+
 import axios from "axios";
 import React, { useState } from "react";
 import { BsGoogle } from "react-icons/bs";
@@ -32,143 +33,117 @@ const SignUp = () => {
       formData.append("contact", contact);
       formData.append("email", email);
       formData.append("password", password);
-      if (file) {
-        formData.append("file", file);
-      }
-      // console.log(file);
+      if (file) formData.append("file", file);
 
       const res = await axios.post("/api/auth/signup", formData);
 
-      // console.log(res);
+      toast.success(res.data.message);
+      router.push("/pages/signin");
 
-      if (res) {
-        toast.success(res.data.message);
-        router.push("/pages/signin");
-      }
-
-      setLoading(false);
       setName("");
       setContact("");
       setEmail("");
       setPassword("");
+      setFile(null);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message || "Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="w-full h-screen bg-gray-300 flex justify-center items-center ">
-      <div
-        className={`formBox w-[50%] h-[90%] bg-white rounded-xl overflow-hidden flex`}
-      >
-        <div className="formBoxWithContent w-[60%] h-full flex flex-col items-center gap-2 mt-4 bg-white  ">
-          <h1 className="font-black">SignUp With</h1>
-          <div className="googleIcon border-1 border-blue-500 p-2 rounded-lg ">
+    <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center p-4">
+      {/* MAIN BOX */}
+      <div className="w-full max-w-4xl bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+        {/* FORM SECTION */}
+        <div className="w-full md:w-[60%] p-6 flex flex-col items-center gap-3">
+          <h1 className="font-black text-lg md:text-xl">SignUp With</h1>
+
+          <div className="border border-blue-500 p-2 rounded-lg">
             <BsGoogle className="text-blue-500" />
           </div>
+
           <p className="font-black">OR</p>
-          <h2 className="text-sm text-gray-500 font-semibold ">
+
+          <h2 className="text-sm text-gray-500 text-center">
             SignUp with your email & password
           </h2>
 
+          {/* FORM */}
           <form
             onSubmit={handleSignUp}
-            action=""
-            className="flex mt-2 flex-col gap-4"
+            className="w-full flex flex-col gap-4 mt-3"
           >
-            <div className="leading-4">
-              <label
-                htmlFor=""
-                className="text-sm text-gray-500 font-semibold "
-              >
-                Name
-              </label>{" "}
-              <br />
+            {/* NAME */}
+            <div>
+              <label className="text-sm text-gray-500">Name</label>
               <input
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                id="name"
-                name="name"
-                className="border-gray-400 border-b-2 outline-none w-full text-sm text-gray-500 "
                 value={name}
-              />
-            </div>
-            <div className="leading-4">
-              <label
-                htmlFor=""
-                className="text-sm text-gray-500 font-semibold "
-              >
-                File
-              </label>
-              <br />
-              <input
-                onChange={handleImage}
-                type="file"
-                id="file"
-                name="file"
-                className="border-gray-400 border-b-2 outline-none text-sm w-full text-sm text-gray-500 text-gray-400"
-              />
-            </div>
-            <div className="leading-4">
-              <label
-                htmlFor=""
-                className="text-sm text-gray-500 font-semibold "
-              >
-                Contact
-              </label>
-              <br />
-              <input
-                onChange={(e) => setContact(e.target.value)}
-                type="text"
-                id="contact"
-                name="contact"
-                className="border-gray-400 border-b-2 outline-none w-full text-sm text-gray-500"
-                value={contact}
-              />
-            </div>
-            <div className="leading-4">
-              <label className="text-sm text-gray-500 font-semibold" htmlFor="">
-                Email
-              </label>{" "}
-              <br />
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                id="email"
-                name="email"
-                className="border-gray-400 border-b-2 outline-none w-full text-sm text-gray-500 "
-                value={email}
-              />
-            </div>
-            <div className="leading-4">
-              <label
-                htmlFor=""
-                className="text-sm text-gray-500 font-semibold "
-              >
-                Password
-              </label>
-              <br />
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                id="password"
-                name="password"
-                className=" text-sm border-gray-400 border-b-2 w-full text-gray-500"
-                value={password}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border-b border-gray-400 outline-none text-sm py-1"
               />
             </div>
 
-            <button className="w-full bg-blue-500 hover:bg-blue-400 transition-colors duration-300 cursor-pointer rounded-lg text-sm py-2 text-white ">
-              {loading ? "Loading" : "SignIn"}
+            {/* FILE */}
+            <div>
+              <label className="text-sm text-gray-500">File</label>
+              <input
+                type="file"
+                onChange={handleImage}
+                className="w-full text-sm text-gray-500"
+              />
+            </div>
+
+            {/* CONTACT */}
+            <div>
+              <label className="text-sm text-gray-500">Contact</label>
+              <input
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                className="w-full border-b border-gray-400 outline-none text-sm py-1"
+              />
+            </div>
+
+            {/* EMAIL */}
+            <div>
+              <label className="text-sm text-gray-500">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border-b border-gray-400 outline-none text-sm py-1"
+              />
+            </div>
+
+            {/* PASSWORD */}
+            <div>
+              <label className="text-sm text-gray-500">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border-b border-gray-400 outline-none text-sm py-1"
+              />
+            </div>
+
+            {/* BUTTON */}
+            <button
+              disabled={loading}
+              className="w-full bg-blue-500 hover:bg-blue-400 transition py-2 text-white rounded-lg text-sm"
+            >
+              {loading ? "Loading..." : "Sign Up"}
             </button>
           </form>
         </div>
-        <div className="contentBox flex justify-center items-center w-[40%] h-full bg-blue-500 rounded-l-4xl ">
+
+        {/* SIDE PANEL (hidden on mobile) */}
+        <div className="hidden md:flex w-[40%] bg-blue-500 items-center justify-center p-6">
           <Link
-            className="border-b-1 border-amber-50 text-white "
-            href={"/pages/signin"}
+            href="/pages/signin"
+            className="text-white border-b border-white"
           >
-            SignIn
+            Sign In
           </Link>
         </div>
       </div>

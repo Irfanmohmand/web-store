@@ -14,139 +14,132 @@ const HomePageAfterLogin = () => {
   const [headerShow, setHeaderShow] = useState(true);
   const [showProfile, setShowProfile] = useState(false);
   const session = useSession();
-  // console.log(session);
 
-  // handleLogout with show message
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/pages/signin" });
     toast.success("Logout successfully.");
   };
 
   return (
-    <div className="w-full h-screen bg-gray-100 ">
+    <div className="w-full min-h-screen bg-gray-100">
+      {/* TOP BANNER */}
       {headerShow && (
-        <header className="flex  items-center gap-2 justify-between h-14 font-bold bg-blue-200 ">
-          <div className="flex justify-center items-center mx-110 gap-2">
-            <h2>Get started with personal plane | </h2>
-            <Link href={"https://wa.me/03465979993"}>
-              <BsWhatsapp />{" "}
-            </Link>{" "}
+        <header className="flex flex-col sm:flex-row items-center justify-between gap-2 px-3 py-2 text-sm font-bold bg-blue-200">
+          <div className="flex items-center gap-2 text-center sm:text-left">
+            <h2 className="text-xs sm:text-sm">
+              Get started with personal plan |
+            </h2>
+            <Link href="https://wa.me/03465979993">
+              <BsWhatsapp />
+            </Link>
           </div>
 
-          <div className="mx-6 ">
-            <button
-              onClick={() => setHeaderShow(false)}
-              className="text-xl font-bold cursor-pointer"
-            >
-              <CgClose />
-            </button>
-          </div>
+          <button
+            onClick={() => setHeaderShow(false)}
+            className="text-xl font-bold"
+          >
+            <CgClose />
+          </button>
         </header>
       )}
 
-      <div className="headers">
-        <header className="header1 px-2 flex justify-between items-center mx-6">
-          <div className="w-14 h-14 relative overflow-hidden ">
-            <Image
-              src={logo}
-              alt="logo"
-              width={56}
-              height={56}
-              className="object-cover"
-            />
+      {/* NAVBAR */}
+      <div className="px-3 sm:px-6">
+        <header className="flex flex-wrap items-center justify-between gap-3 py-3">
+          {/* LOGO */}
+          <div className="w-12 h-12 sm:w-14 sm:h-14 relative">
+            <Image src={logo} alt="logo" fill sizes="56px" />
           </div>
 
-          <div className="htmlCss flex gap-14 text-gray-500">
+          {/* MENU (hidden on small screens) */}
+          <div className="hidden md:flex gap-8 text-gray-500 text-sm">
             <button>Html</button>
             <button>Css</button>
           </div>
 
-          {/* Input */}
-          <div className="search px-6 rounded-4xl flex gap-2 items-center py-2 border-1 border-gray-400 ">
-            <BiSearch className="text-gray-400 cursor-no-drop " />
+          {/* SEARCH (hidden on mobile) */}
+          <div className="hidden sm:flex items-center gap-2 px-4 py-2 border border-gray-400 rounded-full">
+            <BiSearch className="text-gray-400" />
             <input
               type="search"
-              name=""
               placeholder="Search for anything"
-              id=""
-              className=" px-4 outline-none py-1  "
+              className="outline-none text-sm"
             />
           </div>
 
-          {/* Js Bootstrap Tailwind Css */}
-          <div className="jsBotTai flex gap-4 text-gray-500 ">
+          {/* SKILLS (hidden on small screens) */}
+          <div className="hidden lg:flex gap-4 text-gray-500 text-sm">
             <button>JavaScript</button>
-            <button>BootStrap</button>
-            <button>Tailwind Css</button>
+            <button>Bootstrap</button>
+            <button>Tailwind</button>
           </div>
 
-          <div className="profile relative">
+          {/* PROFILE */}
+          <div className="relative">
             <div
               onMouseEnter={() => setShowProfile(true)}
               onMouseLeave={() => setShowProfile(false)}
-              className="profileImg cursor-pointer w-8 h-8 relative overflow-hidden bg-black rounded-full"
+              className="w-8 h-8 sm:w-9 sm:h-9 relative overflow-hidden bg-black rounded-full cursor-pointer"
             >
               {session.data?.user?.file ? (
                 <Image
-                  src={session.data?.user?.file}
-                  alt="img.png"
+                  src={session.data.user.file}
+                  alt="img"
                   fill
-                  sizes="32px"
+                  sizes="40px"
                   className="object-cover"
                 />
               ) : (
-                <div>
-                  <h2>No Image</h2>
-                </div>
+                <div />
               )}
             </div>
 
-            <div className="profileContent absolute -mx-58">
+            {/* DROPDOWN */}
+            <div className="absolute right-0 top-10 z-50">
               <div
-                onMouseEnter={() => setShowProfile(true)}
-                onMouseLeave={() => setShowProfile(false)}
-                className={`w-60 h-90 shadow-md bg-white border-1 border-gray-200 ${!showProfile ? "translate-y-0 opacity-0" : "translate-y-2 opacity-100"} duration-500 rounded-lg`}
+                className={`w-56 sm:w-60 bg-white shadow-md border rounded-lg transition-all duration-300 ${
+                  showProfile
+                    ? "opacity-100 translate-y-2"
+                    : "opacity-0 pointer-events-none"
+                }`}
               >
-                <div className="profileContent flex justify-center items-center gap-4 mt-2 ">
-                  <div className="profileImg w-15 h-15 relative overflow-hidden rounded-full ">
+                {/* USER INFO */}
+                <div className="flex items-center gap-3 p-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 relative overflow-hidden rounded-full">
                     {session.data?.user?.file ? (
                       <Image
-                        src={session.data?.user?.file}
-                        alt="img.png"
+                        src={session.data.user.file}
+                        alt="img"
                         fill
-                        sizes="60px"
+                        sizes="50px"
                         className="object-cover"
                       />
-                    ) : (
-                      <div>
-                        <h2>No Image</h2>
-                      </div>
-                    )}
+                    ) : null}
                   </div>
-                  <div className="emailContent flex flex-col ">
-                    <h2 className="font-bold">
-                      {" "}
-                      {session.data?.user?.name[0].toUpperCase() +
-                        session.data?.user?.name.slice(1)}
+
+                  <div>
+                    <h2 className="font-bold text-sm">
+                      {session.data?.user?.name}
                     </h2>
-                    <p className="text-gray-500 text-sm ">
-                      {" "}
-                      {session.data?.user?.email}{" "}
+                    <p className="text-xs text-gray-500">
+                      {session.data?.user?.email}
                     </p>
                   </div>
                 </div>
-                <hr className="border-1 border-gray-300 mt-4  " />
 
-                <div className="contentProfileCourseNoti flex flex-col text-sm gap-5 mt-6 mx-4 ">
-                  <Link href={"/pages/notifications"}> Notifications </Link>
-                  <Link href={"/pages/courses"}> Courses </Link>
-                  <Link href={"/pages/editProfile"}> Edit Profile </Link>
+                <hr />
+
+                <div className="flex flex-col text-sm p-3 gap-2">
+                  <Link href="/pages/notifications">Notifications</Link>
+                  <Link href="/pages/courses">Courses</Link>
+                  <Link href="/pages/editProfile">Edit Profile</Link>
                 </div>
-                <hr className="border-1 border-gray-300 mt-4  " />
+
+                <hr />
 
                 <button
-                  onClick={() => handleLogout()}
-                  className="text-sm gap-5 mt-6 mx-4 font-bold cursor-pointer"
+                  onClick={handleLogout}
+                  className="w-full text-left p-3 text-sm font-bold"
                 >
                   Logout
                 </button>
@@ -155,41 +148,37 @@ const HomePageAfterLogin = () => {
           </div>
         </header>
 
-        <hr className="border-1 border-gray-300 mt-4  " />
-
-        <header className="header1 text-gray-500 shadow-md py-3 px-2 flex justify-between items-center mx-6">
+        {/* CATEGORY BAR (scrollable on mobile) */}
+        <header className="flex gap-4 overflow-x-auto whitespace-nowrap py-3 text-gray-500 text-sm scrollbar-hide">
           <button>ReactJs</button>
           <button>NodeJs</button>
           <button>ExpressJs</button>
           <button>NextJs</button>
           <button>MongoDb</button>
-          <button>Cloudinay</button>
-          <button>Authentications</button>
+          <button>Cloudinary</button>
+          <button>Auth</button>
           <button>More</button>
         </header>
-      </div>
 
-      <div className="mainPageContent mt-8 flex items-center gap-4 mx-4">
-        <div className="mainConImg w-20 h-20 relative  object-cover overflow-hidden rounded-full ">
-          {session.data?.user?.file ? (
-            <Image
-              src={session.data?.user?.file}
-              alt="img.png"
-              fill
-              sizes="80px"
-              priority
-              className="object-cover"
-            />
-          ) : (
-            <div>
-              <h2>No Image</h2>
-            </div>
-          )}
+        {/* MAIN */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 relative rounded-full overflow-hidden">
+            {session.data?.user?.file ? (
+              <Image
+                src={session.data.user.file}
+                alt="img"
+                fill
+                sizes="80px"
+                priority
+                className="object-cover"
+              />
+            ) : null}
+          </div>
+
+          <h2 className="font-black text-lg sm:text-2xl text-center sm:text-left">
+            Welcome back, {session.data?.user?.name}
+          </h2>
         </div>
-
-        <h2 className="font-black text-2xl ">
-          Welcome back, {session.data?.user?.name}{" "}
-        </h2>
       </div>
     </div>
   );

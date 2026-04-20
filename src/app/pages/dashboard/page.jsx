@@ -139,9 +139,21 @@ const HomePageAfterLogin = () => {
                   <hr />
 
                   <div className="flex flex-col text-sm p-3 gap-2">
-                    <Link href="/pages/notifications">Notifications</Link>
-                    <Link href="/pages/courses">Courses</Link>
-                    <Link href="/pages/editProfile">Edit Profile</Link>
+                    <Link
+                      className="text-md text-black"
+                      href="/pages/notifications"
+                    >
+                      Notifications
+                    </Link>
+                    <Link className="text-md text-black" href="/pages/courses">
+                      Courses
+                    </Link>
+                    <Link
+                      className="text-md text-black"
+                      href="/pages/editProfile"
+                    >
+                      Edit Profile
+                    </Link>
                   </div>
 
                   <hr />
@@ -184,7 +196,7 @@ const HomePageAfterLogin = () => {
               ) : null}
             </div>
 
-            <h2 className="font-black text-lg sm:text-2xl text-center sm:text-left">
+            <h2 className="font-black text-black text-lg sm:text-2xl text-center sm:text-left">
               Welcome back, {session.data?.user?.name}
             </h2>
           </div>

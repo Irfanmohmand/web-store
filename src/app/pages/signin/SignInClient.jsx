@@ -10,6 +10,7 @@ import Link from "next/link";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -20,6 +21,7 @@ const SignIn = () => {
   }, [error]);
 
   const handleSignIn = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     try {
@@ -34,6 +36,7 @@ const SignIn = () => {
         return;
       }
 
+      setLoading(false);
       toast.success("User logged in successfully.");
       router.push("/pages/dashboard");
     } catch (err) {
@@ -44,9 +47,9 @@ const SignIn = () => {
   return (
     <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center p-4">
       {/* MAIN BOX */}
-      <div className="w-full max-w-4xl bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+      <div className=" max-w-2xl bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
         {/* LEFT FORM */}
-        <div className="w-full md:w-[60%] p-6 flex flex-col items-center gap-3">
+        <div className="w-full md:w-[100%] p-6 flex flex-col items-center gap-3">
           <h1 className="font-black text-lg md:text-xl">Sign In With</h1>
 
           <div className="border border-blue-500 p-2 rounded-lg">
@@ -88,19 +91,15 @@ const SignIn = () => {
 
             {/* BUTTON */}
             <button className="w-full bg-blue-500 hover:bg-blue-400 transition py-2 text-white rounded-lg text-sm">
-              Sign In
+              {loading ? "Loading" : "Sign Up"}
             </button>
+            <Link
+              href="/pages/signup"
+              className=" text-center underline text-blue-700"
+            >
+              Signin
+            </Link>
           </form>
-        </div>
-
-        {/* RIGHT PANEL (hidden on mobile) */}
-        <div className="hidden md:flex w-[40%] bg-blue-500 items-center justify-center p-6">
-          <Link
-            href="/pages/signup"
-            className="text-white border-b border-white"
-          >
-            Sign Up
-          </Link>
         </div>
       </div>
     </div>

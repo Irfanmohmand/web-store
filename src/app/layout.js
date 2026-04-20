@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Nunito_Sans } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import ClientProvider from "./ClientProvider";
+import ClientProvider from "./components/ClientProvider";
 
 const nunito = Nunito_Sans({
   subsets: ["latin"],

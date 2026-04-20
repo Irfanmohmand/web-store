@@ -53,9 +53,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center p-4">
+    <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center ">
       {/* MAIN BOX */}
-      <div className="w-full max-w-4xl bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+      <div className="max-w-lg bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
         {/* FORM SECTION */}
         <div className="w-full md:w-[60%] p-6 flex flex-col items-center gap-3">
           <h1 className="font-black text-lg md:text-xl">SignUp With</h1>
@@ -134,17 +134,13 @@ const SignUp = () => {
             >
               {loading ? "Loading..." : "Sign Up"}
             </button>
+            <Link
+              href={"/pages/signin"}
+              className="text-center text-blue-600 underline"
+            >
+              SignIn
+            </Link>
           </form>
-        </div>
-
-        {/* SIDE PANEL (hidden on mobile) */}
-        <div className="hidden md:flex w-[40%] bg-blue-500 items-center justify-center p-6">
-          <Link
-            href="/pages/signin"
-            className="text-white border-b border-white"
-          >
-            Sign In
-          </Link>
         </div>
       </div>
     </div>

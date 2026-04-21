@@ -15,6 +15,13 @@ export const POST = async (req) => {
     const password = formData.get("password").toString();
     const file = formData.get("file");
 
+    if (!name || !contact || !email || !password || !file) {
+      return NextResponse.json(
+        { message: "Please fill all fields" },
+        { status: 401 },
+      );
+    }
+
     // console.log(name, email, contact, password);
 
     const existUser = await User.findOne({ email });

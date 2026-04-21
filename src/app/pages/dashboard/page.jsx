@@ -15,6 +15,7 @@ const HomePageAfterLogin = () => {
   const [headerShow, setHeaderShow] = useState(true);
   const [showProfile, setShowProfile] = useState(false);
   const session = useSession();
+  console.log(session);
 
   const handleLogout = async () => {
     await signOut({ callbackUrl: "/pages/signin" });
@@ -138,23 +139,35 @@ const HomePageAfterLogin = () => {
 
                   <hr />
 
-                  <div className="flex flex-col text-sm p-3 gap-2">
-                    <Link
-                      className="text-md text-black"
-                      href="/pages/notifications"
-                    >
-                      Notifications
-                    </Link>
-                    <Link className="text-md text-black" href="/pages/courses">
-                      Courses
-                    </Link>
-                    <Link
-                      className="text-md text-black"
-                      href="/pages/editProfile"
-                    >
-                      Edit Profile
-                    </Link>
-                  </div>
+                  {/* Setup admin and user */}
+                  {session?.data?.user.role === "admin" ? (
+                    <div className="adminLinks flex flex-col gap-2 mt-2 mx-2 mb-2">
+                      <Link href={"/pages/addCourse"}>Add Courses</Link>
+                      <Link href={"/pages/deleteCourse"}>Delete Courses</Link>
+                      <Link href={"/pages/editCourse"}>Edit Courses</Link>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col text-sm p-3 gap-2">
+                      <Link
+                        className="text-md text-black"
+                        href="/pages/notifications"
+                      >
+                        Notifications
+                      </Link>
+                      <Link
+                        className="text-md text-black"
+                        href="/pages/courses"
+                      >
+                        Courses
+                      </Link>
+                      <Link
+                        className="text-md text-black"
+                        href="/pages/editProfile"
+                      >
+                        Edit Profile
+                      </Link>
+                    </div>
+                  )}
 
                   <hr />
 

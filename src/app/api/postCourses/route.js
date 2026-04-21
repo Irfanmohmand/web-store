@@ -1,10 +1,23 @@
 import Courses from "@/app/models/Courses";
+import authOptions from "@/lib/auth";
 import cloudinary from "@/lib/cloudinary";
 import { dbConnect } from "@/lib/db";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
   try {
+    const session = await getServerSession(authOptions);
+    // console.log("----------------------", session.user.role);
+
+    // check admin
+    if (!session || session.user.role !== "admin") {
+      return NextResponse.json(
+        { message: "Only admin can add course" },
+        { status: 401 },
+      );
+    }
+
     await dbConnect();
 
     const formData = await req.formData();
@@ -12,6 +25,13 @@ export const POST = async (req) => {
     const courseName = formData.get("courseName");
     const courseDetails = formData.get("courseDetails");
     const coursePrice = formData.get("coursePrice");
+
+    if (!courseName || !courseDetails || !coursePrice) {
+      return NextResponse.json(
+        { message: "Please fill all field" },
+        { status: 400 },
+      );
+    }
 
     const existCourse = await Courses.findOne({ courseName });
 

@@ -27,11 +27,15 @@ const authOptions = {
           throw new Error("Email or password is incorrect.");
         }
 
-        const isMatch = await bcrypt.compare(password, existUser.password);
-
-        if (!isMatch) {
+        if (existUser.password !== password) {
           throw new Error("Email or password is incorrect.");
         }
+
+        // const isMatch = await bcrypt.compare(password, existUser.password);
+
+        // if (!isMatch) {
+        //   throw new Error("Email or password is incorrect.");
+        // }
 
         return {
           id: existUser._id.toString(),
@@ -39,6 +43,7 @@ const authOptions = {
           contact: existUser.contact.toString(),
           email: existUser.email,
           file: existUser.file,
+          role: existUser.role,
         };
       },
     }),
@@ -58,6 +63,7 @@ const authOptions = {
           (token.email = user.email),
           (token.file = user.file));
         token.contact = user.contact;
+        token.role = user.role;
       }
 
       return token;
@@ -69,6 +75,7 @@ const authOptions = {
       session.user.email = token.email;
       session.user.file = token.file;
       session.user.contact = token.contact;
+      session.user.role = token.role;
 
       return session;
     },

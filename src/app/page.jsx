@@ -1,73 +1,73 @@
-"use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
-import logoImg from "@/app/images/logo.png";
-import onlineCourse from "@/app/images/online-course.png";
+import React from "react";
+import logo from "@/app/images/logo.png";
+import { BiUser } from "react-icons/bi";
+import { CgPassword } from "react-icons/cg";
 import Link from "next/link";
-import toast from "react-hot-toast";
 
-const Home = () => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      toast("😌 Be patience, web-store is under construction.");
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+const home = () => {
   return (
-    <div className="bg-white min-h-screen px-4 md:px-10 lg:px-20">
-      {/* HEADER */}
-      <header className="flex items-center py-4">
-        <div className="w-16 h-16 md:w-20 md:h-20 relative">
-          <Image src={logoImg} alt="logo" fill sizes="80px" />
+    <div className="w-full h-screen bg-gray-300 flex  justify-center items-center ">
+      <div className="w-[80%] flex  rounded-lg h-[90%] bg-gradient-to-r from-gray-900 to-white ">
+        <div className="w-[60%] rounded-lg h-full bg-gradient-to-r from-gray-900 to-red-900 flex flex-col items-center shadow-lg ">
+          <div className="imgBox w-20 h-20 relative overflow-hidden">
+            <Image src={logo} alt="logo.png" fill loading="eager" sizes={80} />
+          </div>
+          <h2 className="font-black text-xl mt-6 text-white ">
+            About Web-Store
+          </h2>
+          <p className="text-center w-[90%] mt-2 text-gray-400">
+            Our web-store is a dedicated platform for students who want to learn
+            web development from beginner to advanced level. We focus only on
+            practical learning, where students not only understand concepts but
+            also build real projects. This platform is designed to help you grow
+            step by step — from basic HTML to full stack development using
+            modern technologies.
+          </p>
         </div>
-      </header>
 
-      {/* MAIN CONTENT */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-10 mt-10">
-        {/* TEXT SECTION */}
-        <div className="contentText text-center md:text-left">
-          <h1 className="font-black text-3xl md:text-5xl lg:text-6xl leading-tight">
-            Learn Skills, <br /> Build Your <br /> Future
+        <div className="flex flex-col items-center w-[40%] justify-center rounded-lg ">
+          <h1 className="text-2xl font-black bg-gradient-to-r from-black to-red-500 bg-clip-text text-transparent ">
+            User Login
           </h1>
 
-          <p className="text-gray-400 mt-3 text-sm md:text-base">
-            Join online courses today and unlock your potential for success.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center md:justify-start">
+          <form action="" className="mt-10 flex flex-col gap-4">
+            <div className="w-[120%] px-2 flex justify-center items-center  shadow-lg p-2 rounded-lg">
+              <BiUser />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email.."
+                className="w-full px-2 outline-none"
+              />
+            </div>
+            <div className="w-[120%] px-2 flex justify-center items-center  shadow-lg p-2 rounded-lg">
+              <CgPassword />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password.."
+                className="w-full px-2 outline-none"
+              />
+            </div>
             <Link
-              href="/pages/signup"
-              className="bg-blue-400 hover:bg-white border border-blue-500 hover:text-blue-500 text-white text-sm py-2 px-8 rounded-lg transition"
+              href={"/pages/signup"}
+              className="text-sm text-center text-gray-600"
             >
-              Sign Up
+              Dont have account?{" "}
+              <span className="pl-20 text-blue-500 underline">SignUp!</span>
             </Link>
 
-            <Link
-              href="/pages/signin"
-              className="border border-blue-500 text-blue-500 hover:bg-blue-400 hover:text-white text-sm py-2 px-8 rounded-lg transition"
-            >
-              Sign In
-            </Link>
-          </div>
-        </div>
-
-        {/* IMAGE SECTION */}
-        <div className="w-full flex justify-center md:justify-end">
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
-            <Image
-              src={onlineCourse}
-              alt="online-course"
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-contain"
-            />
-          </div>
+            <button className="px-6 py-2 bg-gradient-to-r from-black to-red-500 text-white font-medium rounded-lg mt-4 cursor-pointer">
+              Login
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default home;

@@ -13,7 +13,7 @@ const CourseList = () => {
       try {
         const result = await axios.get("/api/getCourses");
         setData(result.data);
-        console.log(result.data);
+        // console.log(result.data);
       } catch (error) {
         toast.error(error.response.data.message);
       }
@@ -30,9 +30,12 @@ const CourseList = () => {
       {/* <p className="text-xl font-black mt-4"> {data.message} </p> */}
       <div className="flex flex-wrap justify-center mt-4 gap-10 items-center ">
         {data?.courses?.map((courseData) => (
-          <div key={courseData._id} className="flex flex-col gap-2">
+          <div
+            key={courseData._id}
+            className="flex flex-col gap-2 shadow-lg rounded-lg"
+          >
             {courseData.file ? (
-              <div className="imgBox w-50 h-50 overflow-hidden relative ">
+              <div className="imgBox w-70 h-50 overflow-hidden relative ">
                 <Image
                   src={courseData.file}
                   alt={`${courseData?.courseName}`}
@@ -46,15 +49,19 @@ const CourseList = () => {
                 <p> No Image</p>
               </div>
             )}
-            <h1 className="text-2xl font-black"> {courseData.courseName} </h1>
-            <p className="text-lg text-gray-500">
-              {" "}
-              {courseData.courseDetails}{" "}
-            </p>
-            <h2 className="font-bold text-gray-700">
-              Rs. {courseData.coursePrice}{" "}
-            </h2>
-            <Link href={`/pages/courses/${courseData?._id}`}>More</Link>
+            <div className="mx-2 p-4">
+              <h1 className="text-2xl font-black"> {courseData.courseName} </h1>
+              <p className="text-lg text-gray-500">
+                {" "}
+                {courseData.courseDetails}{" "}
+              </p>
+              <h2 className="font-bold text-gray-700">
+                Rs. {courseData.coursePrice}{" "}
+              </h2>
+              <div className="mt-4 underline">
+                <Link href={`/pages/courses/${courseData?._id}`}>More</Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>

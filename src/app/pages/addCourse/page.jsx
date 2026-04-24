@@ -34,7 +34,7 @@ const addCourse = () => {
       setCourseName("");
       setCourseDetails("");
       setCoursePrice("");
-      router.push("/pages/dashboard");
+      router.push("/pages/home");
       setLoading(false);
     } catch (error) {
       toast.error(error.response.data.message);

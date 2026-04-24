@@ -38,9 +38,9 @@ const SignIn = () => {
 
       setLoading(false);
       toast.success("User logged in successfully.");
-      router.push("/pages/dashboard");
+      router.push("/pages/home");
     } catch (err) {
-      toast.error("Something went wrong");
+      toast.error(result.error);
     }
   };
 

@@ -18,7 +18,7 @@ const HomePageAfterLogin = () => {
   // console.log(session?.user?.role);
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "/pages/signin" });
+    await signOut({ callbackUrl: "/" });
     toast.success("Logout successfully.");
   };
 

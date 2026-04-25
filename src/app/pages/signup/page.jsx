@@ -6,6 +6,8 @@ import { BsGoogle } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/app/images/logo.png";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -24,8 +26,8 @@ const SignUp = () => {
   };
 
   const handleSignUp = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -53,92 +55,92 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center ">
+    <div className="w-full min-h-screen bg-gray-300 flex justify-center items-center p-4">
       {/* MAIN BOX */}
-      <div className="max-w-lg bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-lg">
-        {/* FORM SECTION */}
-        <div className="w-full md:w-[60%] p-6 flex flex-col items-center gap-3">
-          <h1 className="font-black text-lg md:text-xl">SignUp With</h1>
-
-          <div className="border border-blue-500 p-2 rounded-lg">
-            <BsGoogle className="text-blue-500" />
+      <div className="w-full max-w-6xl flex flex-col md:flex-row rounded-lg bg-gradient-to-r from-gray-900 to-white">
+        {/* LEFT SIDE (same as login) */}
+        <div className="w-full md:w-[60%] bg-gradient-to-r from-gray-900 to-red-900 flex flex-col items-center justify-center p-6 rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 relative">
+            <Image src={logo} alt="logo" fill sizes="80px" />
           </div>
 
-          <p className="font-black">OR</p>
-
-          <h2 className="text-sm text-gray-500 text-center">
-            SignUp with your email & password
+          <h2 className="text-white font-black text-lg sm:text-xl mt-4 text-center">
+            About Web-Store
           </h2>
 
-          {/* FORM */}
+          <p className="text-gray-400 text-center mt-2 text-sm sm:text-base max-w-md">
+            Our web-store is a dedicated platform for students who want to learn
+            web development from beginner to advanced level. We focus only on
+            practical learning, where students not only understand concepts but
+            also build real projects. This platform is designed to help you grow
+            step by step — from basic HTML to full stack development using
+            modern technologies.
+          </p>
+        </div>
+
+        {/* RIGHT SIDE (FORM) */}
+        <div className="w-full md:w-[40%] flex flex-col justify-center items-center p-6 rounded-b-lg md:rounded-r-lg md:rounded-bl-none">
+          <h1 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-black to-red-500 bg-clip-text text-transparent">
+            User SignUp
+          </h1>
+
           <form
             onSubmit={handleSignUp}
-            className="w-full flex flex-col gap-4 mt-3"
+            className="w-full flex flex-col gap-4 mt-6"
           >
             {/* NAME */}
-            <div>
-              <label className="text-sm text-gray-500">Name</label>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full border-b border-gray-400 outline-none text-sm py-1"
-              />
-            </div>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
+            />
 
             {/* FILE */}
-            <div>
-              <label className="text-sm text-gray-500">File</label>
-              <input
-                type="file"
-                onChange={handleImage}
-                className="w-full text-sm text-gray-500"
-              />
-            </div>
+            <input
+              type="file"
+              onChange={handleImage}
+              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
+            />
 
             {/* CONTACT */}
-            <div>
-              <label className="text-sm text-gray-500">Contact</label>
-              <input
-                value={contact}
-                onChange={(e) => setContact(e.target.value)}
-                className="w-full border-b border-gray-400 outline-none text-sm py-1"
-              />
-            </div>
+            <input
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              placeholder="Contact"
+              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
+            />
 
             {/* EMAIL */}
-            <div>
-              <label className="text-sm text-gray-500">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border-b border-gray-400 outline-none text-sm py-1"
-              />
-            </div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
+            />
 
             {/* PASSWORD */}
-            <div>
-              <label className="text-sm text-gray-500">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full border-b border-gray-400 outline-none text-sm py-1"
-              />
-            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
+            />
 
             {/* BUTTON */}
             <button
               disabled={loading}
-              className="w-full bg-blue-500 hover:bg-blue-400 transition py-2 text-white rounded-lg text-sm"
+              className="w-full py-2 bg-gradient-to-r from-black to-red-500 text-white rounded-lg mt-2"
             >
               {loading ? "Loading..." : "Sign Up"}
             </button>
-            <Link
-              href={"/pages/signin"}
-              className="text-center text-blue-600 underline"
-            >
-              SignIn
+
+            {/* LINK */}
+            <Link href={"/"} className="text-center text-gray-600 text-sm">
+              Already have account?{" "}
+              <span className="text-blue-500 underline">SignIn</span>
             </Link>
           </form>
         </div>

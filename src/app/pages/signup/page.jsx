@@ -97,11 +97,23 @@ const SignUp = () => {
             />
 
             {/* FILE */}
-            <input
-              type="file"
-              onChange={handleImage}
-              className="w-full p-2 rounded-lg shadow bg-white outline-none text-sm"
-            />
+            <div className="w-full">
+              {/* Hidden input */}
+              <input
+                type="file"
+                id="fileUpload"
+                onChange={handleImage}
+                className="hidden"
+              />
+
+              {/* Custom UI */}
+              <label
+                htmlFor="fileUpload"
+                className="w-full p-2 rounded-lg shadow text-gray-500 bg-white text-sm cursor-pointer block"
+              >
+                {file ? file.name : "upload profile image"}
+              </label>
+            </div>
 
             {/* CONTACT */}
             <input

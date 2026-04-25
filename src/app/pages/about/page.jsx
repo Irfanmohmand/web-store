@@ -1,62 +1,67 @@
+import Image from "next/image";
+import logo from "@/app/images/logo.png";
+
 export default function About() {
   return (
-    <div className="bg-gray-50 py-16 px-6">
-      {/* Title */}
-      <div className="text-center max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-800">
-          About Our Web-Store
-        </h1>
-        <p className="mt-4 text-gray-600">
-          A modern learning platform to help you become a Full Stack Developer
-          from zero to advanced level.
-        </p>
-      </div>
+    <div className="w-full min-h-screen bg-gradient-to-r from-gray-900 via-black to-red-900 flex justify-center items-center p-4">
+      {/* MAIN BOX */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row rounded-lg bg-white/10 backdrop-blur-md border border-white/20">
+        {/* LEFT SIDE */}
+        <div className="w-full md:w-[60%] flex flex-col items-center justify-center p-6">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 relative">
+            <Image src={logo} alt="logo" fill sizes="80px" />
+          </div>
 
-      {/* Cards */}
-      <div className="grid md:grid-cols-3 gap-6 mt-12 max-w-6xl mx-auto">
-        {/* Card 1 */}
-        <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-semibold text-blue-600 mb-3">
-            🎯 Purpose
-          </h2>
-          <p className="text-gray-600">
-            To help beginners learn web development step-by-step with real-world
-            projects and practical skills.
+          <h1 className="text-white text-2xl sm:text-3xl font-black mt-4 text-center">
+            About Our Web-Store
+          </h1>
+
+          <p className="text-gray-300 text-center mt-3 text-sm sm:text-base max-w-md">
+            A modern learning platform to help you become a Full Stack Developer
+            from zero to advanced level.
+          </p>
+
+          <p className="text-gray-400 text-center mt-4 text-sm sm:text-base max-w-md">
+            This Web-Store is not just about learning — it’s about building your
+            future in technology.
           </p>
         </div>
 
-        {/* Card 2 */}
-        <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-semibold text-green-600 mb-3">
-            💡 Learning Style
+        {/* RIGHT SIDE */}
+        <div className="w-full md:w-[40%] flex flex-col justify-center items-center p-6">
+          <h2 className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent mb-6">
+            Why This Platform?
           </h2>
-          <p className="text-gray-600">
-            We focus on practical learning, project building, and industry-ready
-            skills instead of just theory.
-          </p>
-        </div>
 
-        {/* Card 3 */}
-        <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-          <h2 className="text-xl font-semibold text-purple-600 mb-3">
-            🚀 Goal
-          </h2>
-          <p className="text-gray-600">
-            To turn beginners into professional developers who can build real
-            applications and earn online.
-          </p>
-        </div>
-      </div>
+          <div className="w-full flex flex-col gap-4">
+            <div className="bg-white/90 p-4 rounded-lg shadow">
+              <h3 className="font-semibold text-red-500 mb-1">🎯 Purpose</h3>
+              <p className="text-gray-600 text-sm">
+                Learn web development step-by-step with real-world projects.
+              </p>
+            </div>
 
-      {/* Bottom Section */}
-      <div className="text-center mt-16 max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800">
-          Learn. Build. Grow.
-        </h2>
-        <p className="mt-3 text-gray-600">
-          This Web-Store is not just about learning — it’s about building your
-          future in technology.
-        </p>
+            <div className="bg-white/90 p-4 rounded-lg shadow">
+              <h3 className="font-semibold text-red-500 mb-1">
+                💡 Learning Style
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Practical learning with project-based approach.
+              </p>
+            </div>
+
+            <div className="bg-white/90 p-4 rounded-lg shadow">
+              <h3 className="font-semibold text-red-500 mb-1">🚀 Goal</h3>
+              <p className="text-gray-600 text-sm">
+                Become a professional developer and build real apps.
+              </p>
+            </div>
+          </div>
+
+          <h3 className="mt-6 text-lg font-bold text-white text-center">
+            Learn. Build. Grow.
+          </h3>
+        </div>
       </div>
     </div>
   );

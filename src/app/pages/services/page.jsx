@@ -5,22 +5,22 @@ import { BsWhatsapp } from "react-icons/bs";
 
 export default function Home() {
   return (
-    <div className="bg-[#0b0f19] text-white">
-      {/* 🔥 HERO SECTION */}
-      <section className="text-center py-24 px-6 bg-gradient-to-r from-indigo-900 via-purple-900 to-black">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+    <div className="min-h-screen bg-gradient-to-r from-gray-900  to-red-950 text-white">
+      {/* 🔥 HERO */}
+      <section className="text-center py-24 px-6">
+        <h1 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
           Learn Web Development from Zero to Full Stack
         </h1>
 
-        <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
           Start with HTML, CSS, and JavaScript — and become a professional Full
           Stack Developer with real-world projects.
         </p>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 flex-wrap">
           <Link
             href="https://wa.me/923465979993"
-            className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition shadow-lg shadow-green-500/20"
+            className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition"
           >
             <BsWhatsapp /> Join Now
           </Link>
@@ -41,14 +41,13 @@ export default function Home() {
       </section>
 
       {/* 📚 LEARNING PATH */}
-      <section className="py-20 px-6 bg-[#0f172a]">
+      <section className="py-20 px-6">
         <h2 className="text-3xl font-bold text-center mb-12">
           What You Will Learn
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Beginner */}
-          <div className="p-6 bg-[#111827] rounded-2xl border border-gray-800 hover:scale-105 transition">
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto text-center">
+          <div className="hover:scale-105 transition">
             <h3 className="text-xl font-semibold mb-4 text-green-400">
               Beginner
             </h3>
@@ -60,8 +59,7 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Intermediate */}
-          <div className="p-6 bg-[#111827] rounded-2xl border border-gray-800 hover:scale-105 transition">
+          <div className="hover:scale-105 transition">
             <h3 className="text-xl font-semibold mb-4 text-blue-400">
               Intermediate
             </h3>
@@ -73,8 +71,7 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Advanced */}
-          <div className="p-6 bg-[#111827] rounded-2xl border border-gray-800 hover:scale-105 transition">
+          <div className="hover:scale-105 transition">
             <h3 className="text-xl font-semibold mb-4 text-red-400">
               Advanced
             </h3>
@@ -94,23 +91,15 @@ export default function Home() {
           Real Projects You Will Build
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div className="p-6 bg-[#111827] rounded-xl border border-gray-800 hover:shadow-lg hover:shadow-purple-500/10 transition">
-            Portfolio Website
-          </div>
-
-          <div className="p-6 bg-[#111827] rounded-xl border border-gray-800 hover:shadow-lg hover:shadow-purple-500/10 transition">
-            E-commerce Website
-          </div>
-
-          <div className="p-6 bg-[#111827] rounded-xl border border-gray-800 hover:shadow-lg hover:shadow-purple-500/10 transition">
-            Course Platform
-          </div>
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="hover:scale-105 transition">Portfolio Website</div>
+          <div className="hover:scale-105 transition">E-commerce Website</div>
+          <div className="hover:scale-105 transition">Course Platform</div>
         </div>
       </section>
 
       {/* 🎯 WHY ME */}
-      <section className="py-20 px-6 text-center bg-[#0f172a]">
+      <section className="py-20 px-6 text-center">
         <h2 className="text-3xl font-bold mb-8">Why Learn From Me</h2>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto text-gray-300">
@@ -122,7 +111,7 @@ export default function Home() {
       </section>
 
       {/* 📢 CTA */}
-      <section className="py-24 px-6 text-center bg-gradient-to-r from-purple-900 to-black">
+      <section className="py-24 px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">Start Your Journey Today</h2>
 
         <p className="text-gray-300 mb-8">
@@ -131,7 +120,7 @@ export default function Home() {
 
         <Link
           href="https://wa.me/923465979993"
-          className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold inline-flex items-center gap-2 transition shadow-lg shadow-green-500/20"
+          className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-xl font-semibold inline-flex items-center gap-2 transition"
         >
           <BsWhatsapp /> Join via WhatsApp
         </Link>

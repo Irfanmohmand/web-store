@@ -22,7 +22,7 @@ const CourseList = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen mt-10 ">
+    <div className="w-full mt-15 bg-gradient-to-r from-black to-red-950 ">
       <h1 className="font-black text-2xl">What to learn next</h1>
       <h4 className="font-bold text-lg mt-10 text-gray-700 ">
         Recommended for you
@@ -50,15 +50,18 @@ const CourseList = () => {
               </div>
             )}
             <div className="mx-2 p-4">
-              <h1 className="text-2xl font-black"> {courseData.courseName} </h1>
-              <p className="text-lg text-gray-500">
+              <h1 className="text-2xl font-black text-white">
+                {" "}
+                {courseData.courseName}{" "}
+              </h1>
+              <p className="text-lg text-gray-200">
                 {" "}
                 {courseData.courseDetails}{" "}
               </p>
-              <h2 className="font-bold text-gray-700">
+              <h2 className="font-bold text-gray-400">
                 Rs. {courseData.coursePrice}{" "}
               </h2>
-              <div className="mt-4 underline">
+              <div className="mt-4 underline text-white">
                 <Link href={`/pages/courses/${courseData?._id}`}>More</Link>
               </div>
             </div>

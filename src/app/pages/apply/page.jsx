@@ -17,108 +17,131 @@ const Apply = () => {
 
   const handleApply = async (e) => {
     e.preventDefault();
-    // console.log(name, whatsapp, course, level, availability, goal);
 
-    const result = await axios.post("/api/admission", {
-      name,
-      whatsapp,
-      course,
-      level,
-      availability,
-      goal,
-    });
-
-    setName("");
-    setWhatsapp("");
-    setCourse("");
-    setLevel("");
-    setAvailability("");
-    setGoal("");
-    toast.success(result.data.message);
-    router.push("/pages/home");
     try {
+      const result = await axios.post("/api/admission", {
+        name,
+        whatsapp,
+        course,
+        level,
+        availability,
+        goal,
+      });
+
+      toast.success(result.data.message);
+
+      setName("");
+      setWhatsapp("");
+      setCourse("");
+      setLevel("");
+      setAvailability("");
+      setGoal("");
+
+      router.push("/pages/home");
     } catch (error) {
       toast.error(error.response?.data?.message);
     }
   };
 
   return (
-    <div className="w-full h-screen  flex justify-center items-center ">
-      <div className="formBox w-[30%] p-2 rounded-lg bg-gray-100 shadow-lg flex flex-col justify-center items-center ">
-        <div className="imgBox w-20 h-20 relative overflow-hidden ">
-          <Image src={logo} fill sizes="80" alt="logo.png" loading="eager" />
+    <div className="min-h-screen flex justify-center items-center px-4 bg-gradient-to-br from-black via-[#0b0f19] to-red-900 text-white">
+      {/* FORM BOX */}
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-xl shadow-lg">
+        {/* LOGO */}
+        <div className="w-16 h-16 mx-auto relative mb-4">
+          <Image src={logo} fill sizes="64px" alt="logo" />
         </div>
 
-        <form
-          onSubmit={handleApply}
-          action=""
-          className="flex flex-col w-[80%]  gap-2"
-        >
+        <h2 className="text-center text-xl font-bold mb-4 bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+          Reserve Your Seat
+        </h2>
+
+        {/* FORM */}
+        <form onSubmit={handleApply} className="flex flex-col gap-3 text-sm">
           <input
+            value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
-            name="name"
-            id="name"
-            placeholder="name"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            placeholder="Your Name"
+            className="bg-white/10 px-3 py-2 rounded-lg outline-none"
           />
+
           <input
+            value={whatsapp}
             onChange={(e) => setWhatsapp(e.target.value)}
             type="number"
-            name="whatsapp"
-            id="whatsapp"
-            placeholder="whatsapp"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            placeholder="WhatsApp Number"
+            className="bg-white/10 px-3 py-2 rounded-lg outline-none"
           />
+
           <select
+            value={course}
             onChange={(e) => setCourse(e.target.value)}
-            name="course"
-            id="course"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            className="bg-white/10 px-3 py-2 rounded-lg outline-none"
           >
-            <option value="">Course</option>
-            <option value="html">Html</option>
-            <option value="css">Css</option>
-            <option value="javascript">JavaScript</option>
-            <option value="react">ReactJs</option>
+            <option value="" className="text-black">
+              Select Course
+            </option>
+            <option value="html" className="text-black">
+              Frontend
+            </option>
+            <option value="css" className="text-black">
+              React
+            </option>
+            <option value="javascript" className="text-black">
+              NextJs
+            </option>
+            <option value="react" className="text-black">
+              MongoDB
+            </option>
           </select>
 
           <select
+            value={level}
             onChange={(e) => setLevel(e.target.value)}
-            name="level"
-            id="level"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            className="bg-white/10 px-3 py-2 rounded-lg outline-none"
           >
-            <option value="">Level</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
+            <option value="">Select Level</option>
+            <option value="beginner" className="text-black">
+              Beginner
+            </option>
+            <option value="intermediate" className="text-black">
+              Intermediate
+            </option>
+            <option value="advanced" className="text-black">
+              Advanced
+            </option>
           </select>
 
           <select
+            value={availability}
             onChange={(e) => setAvailability(e.target.value)}
-            name="availability"
-            id="availability"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            className="bg-white/10  px-3 py-2 rounded-lg outline-none"
           >
-            <option value="">Availability</option>
-            <option value="morning">Morning</option>
-            <option value="afternoon">Afternoon</option>
-            <option value="evening">Evening</option>
+            <option value="" className="text-white">
+              Availability
+            </option>
+            <option value="morning" className="text-black">
+              Morning
+            </option>
+            <option value="afternoon" className="text-black">
+              Afternoon
+            </option>
+            <option value="evening" className="text-black">
+              Evening
+            </option>
           </select>
 
           <textarea
+            value={goal}
             onChange={(e) => setGoal(e.target.value)}
-            name="goal"
-            id="goal"
-            cols={4}
-            rows={6}
-            placeholder="goal"
-            className="bg-gray-300 px-2 py-1 rounded-lg outline-none shadow-md"
+            placeholder="Your Goal"
+            rows={4}
+            className="bg-white/10 px-3 py-2 rounded-lg outline-none resize-none"
           ></textarea>
 
-          <button className="px-6 py-2 bg-blue-500 rounded-lg text-white cursor-pointer hover:bg-blue-600 ">
-            Submit
+          <button className="mt-2 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold transition">
+            Submit Application
           </button>
         </form>
       </div>

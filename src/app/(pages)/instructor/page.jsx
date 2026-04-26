@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import instructor from "@/app/images/instructor.jpeg";
+import instructor from "@/images/instructor.jpeg";
 import { useState } from "react";
 
 export default function Portfolio() {

@@ -62,7 +62,7 @@ const CourseList = () => {
                 Rs. {courseData.coursePrice}{" "}
               </h2>
               <div className="mt-4 underline text-white">
-                <Link href={`/pages/courses/${courseData?._id}`}>More</Link>
+                <Link href={`/courses/${courseData?._id}`}>More</Link>
               </div>
             </div>
           </div>

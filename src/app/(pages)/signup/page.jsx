@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/app/images/logo.png";
+import logo from "@/images/logo.png";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -40,7 +40,7 @@ const SignUp = () => {
       const res = await axios.post("/api/auth/signup", formData);
 
       toast.success(res.data.message);
-      router.push("/pages/signin");
+      router.push("/");
 
       setName("");
       setContact("");

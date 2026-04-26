@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import logo from "@/app/images/logo.png";
+import logo from "@/images/logo.png";
 import { signOut, useSession } from "next-auth/react";
 import { CgClose } from "react-icons/cg";
 import { BsWhatsapp } from "react-icons/bs";
@@ -50,19 +50,19 @@ const Navbar = () => {
 
           {/* NAV LINKS */}
           <div className="hidden md:flex gap-6 text-sm font-medium text-gray-300">
-            <Link className="hover:text-red-400" href="/pages/home">
+            <Link className="hover:text-red-400" href="/home">
               Home
             </Link>
-            <Link className="hover:text-red-400" href="/pages/about">
+            <Link className="hover:text-red-400" href="/about">
               About
             </Link>
-            <Link className="hover:text-red-400" href="/pages/services">
+            <Link className="hover:text-red-400" href="/services">
               Services
             </Link>
-            <Link className="hover:text-red-400" href="/pages/instructor">
+            <Link className="hover:text-red-400" href="/instructor">
               Instructor
             </Link>
-            <Link className="hover:text-red-400" href="/pages/apply">
+            <Link className="hover:text-red-400" href="/apply">
               Reserve Seat
             </Link>
           </div>
@@ -110,31 +110,22 @@ const Navbar = () => {
               <div className="p-3 flex flex-col gap-2 text-sm">
                 {session?.user?.role === "admin" ? (
                   <>
-                    <Link
-                      className="hover:text-red-400"
-                      href="/pages/addCourse"
-                    >
+                    <Link className="hover:text-red-400" href="/addCourse">
                       Add Course
                     </Link>
-                    <Link className="hover:text-red-400" href="/pages/getUsers">
+                    <Link className="hover:text-red-400" href="/getUsers">
                       Get Users
                     </Link>
-                    <Link
-                      className="hover:text-red-400"
-                      href="/pages/editProfile"
-                    >
+                    <Link className="hover:text-red-400" href="/editProfile">
                       Edit Profile
                     </Link>
                   </>
                 ) : (
                   <>
-                    <Link className="hover:text-red-400" href="/pages/courses">
+                    <Link className="hover:text-red-400" href="/courses">
                       Courses
                     </Link>
-                    <Link
-                      className="hover:text-red-400"
-                      href="/pages/editProfile"
-                    >
+                    <Link className="hover:text-red-400" href="/editProfile">
                       Edit Profile
                     </Link>
                   </>

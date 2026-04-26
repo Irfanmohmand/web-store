@@ -7,7 +7,7 @@ import { CgClose } from "react-icons/cg";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
-import CourseList from "@/app/components/CourseList";
+import CourseList from "@/components/CourseList";
 
 const HomePageAfterLogin = () => {
   const { data: session } = useSession();

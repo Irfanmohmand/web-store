@@ -1,4 +1,4 @@
-import Courses from "@/app/models/Courses";
+import Courses from "@/models/Courses";
 import authOptions from "@/lib/auth";
 import cloudinary from "@/lib/cloudinary";
 import { dbConnect } from "@/lib/db";

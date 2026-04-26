@@ -8,7 +8,7 @@ const construction = () => {
         The Page Is Under Construction. Be Patience We will contact you ASAP.
         You Just fill the form to reserve your seat.
       </h1>
-      <Link href={"/pages/apply"} className="mt-10 text-blue-500 underline ">
+      <Link href={"/apply"} className="mt-10 text-blue-500 underline ">
         Reserve Your Seat Now!
       </Link>
     </div>

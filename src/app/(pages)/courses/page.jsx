@@ -1,4 +1,4 @@
-import CourseList from "@/app/components/CourseList";
+import CourseList from "@/components/CourseList";
 import React from "react";
 
 const Courses = () => {

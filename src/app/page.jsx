@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import logo from "@/app/images/logo.png";
+import logo from "@/images/logo.png";
 import { BiUser } from "react-icons/bi";
 import { CgPassword } from "react-icons/cg";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const Home = () => {
 
       setLoading(false);
       toast.success("User loggedIn successfully.");
-      router.push("/pages/home");
+      router.push("/home");
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -97,7 +97,7 @@ const Home = () => {
 
             {/* LINK */}
             <Link
-              href={"/pages/signup"}
+              href={"/signup"}
               className="text-sm text-center text-gray-600"
             >
               Dont have account?{" "}

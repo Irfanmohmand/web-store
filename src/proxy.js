@@ -9,9 +9,10 @@ export default async function middleware(req) {
 
   const publicRoutes = [
     "/",
-    "/pages/signup",
-    "/pages/signin",
+    "/signup",
+    "/signin",
     "/api/auth",
+    "/verify-email",
     "favicon.ico",
   ];
 

@@ -1,4 +1,4 @@
-import Admissions from "@/app/models/Admission";
+import Admissions from "@/models/Admission";
 import { dbConnect } from "@/lib/db";
 import { NextResponse } from "next/server";
 

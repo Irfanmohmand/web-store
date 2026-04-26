@@ -1,7 +1,9 @@
-import User from "@/app/models/UserModel";
+import User from "@/models/UserModel";
 import { dbConnect } from "@/lib/db";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
+import crypto from "crypto";
+import { sendVerificationEmail } from "@/lib/sendEmail";
 
 export const POST = async (req) => {
   try {
@@ -54,16 +56,25 @@ export const POST = async (req) => {
       imgUrl = result.secure_url;
     }
 
+    const token = crypto.randomBytes(32).toString("hex");
+
     const user = await User.create({
       name,
       contact,
       email,
       password,
       file: imgUrl,
+      verifyToken: token,
+      verifyTokenExpiry: Date.now() + 3600000,
     });
 
+    await sendVerificationEmail(email, token);
+
     return NextResponse.json(
-      { message: "User created successfully.", user },
+      {
+        message: "User Registered successfully.Check your email to verify.",
+        user,
+      },
       { status: 200 },
     );
   } catch (error) {

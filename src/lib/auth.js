@@ -1,7 +1,7 @@
-import User from "@/app/models/UserModel";
+import User from "@/models/UserModel.js";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { dbConnect } from "./db";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
 const authOptions = {
   providers: [
@@ -29,6 +29,10 @@ const authOptions = {
 
         if (existUser.password !== password) {
           throw new Error("Email or password is incorrect.");
+        }
+
+        if (!existUser.isVerified) {
+          throw new Error("Please verify your email first.");
         }
 
         // const isMatch = await bcrypt.compare(password, existUser.password);
@@ -82,7 +86,7 @@ const authOptions = {
   },
 
   pages: {
-    signIn: "/pages/signin",
+    signIn: "/",
   },
 
   secret: process.env.NEXTAUTH_SECRET,

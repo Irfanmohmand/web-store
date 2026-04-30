@@ -1,11 +1,9 @@
+import { getServerSession } from "next-auth";
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
 export default async function middleware(req) {
   const { pathname } = req.nextUrl;
-
-  // console.log("PATH:", pathname);
-  // console.log("RUNNING MIDDLEWARE");
 
   const publicRoutes = [
     "/",

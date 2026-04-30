@@ -1,29 +1,53 @@
 import mongoose from "mongoose";
 
-const CourseSchema = new mongoose.Schema(
+const addCourseSchema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: true,
+    },
+
+    shortDes: {
+      type: String,
+      required: true,
+    },
+
+    fullDes: {
+      type: String,
+      required: true,
+    },
+
+    requirements: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    courseCon: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    price: {
+      type: String,
+      required: true,
+    },
+    bulletPoints: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     file: {
       type: String,
-    },
-
-    courseName: {
-      type: String,
-      required: true,
-    },
-
-    courseDetails: {
-      type: String,
-      required: true,
-    },
-
-    coursePrice: {
-      type: Number,
       required: true,
     },
   },
   { timestamps: true },
 );
 
-const Courses =
-  mongoose.models.Courses || mongoose.model("Courses", CourseSchema);
-export default Courses;
+const addCourse =
+  mongoose.models.AddCourse || mongoose.model("AddCourse", addCourseSchema);
+
+export default addCourse;

@@ -4,6 +4,7 @@ import { Nunito_Sans } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import ClientProvider from "../components/ClientProvider";
 import Navbar from "../components/Navbar";
+import Footer from "@/components/Footer";
 
 const nunito = Nunito_Sans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
         <ClientProvider>
           <Navbar />
           {children}
+          <Footer />
           <Toaster />
         </ClientProvider>
       </body>

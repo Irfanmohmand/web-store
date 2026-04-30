@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/images/logo.png";
 import { BiUser } from "react-icons/bi";
 import { CgPassword } from "react-icons/cg";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -14,6 +14,14 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { data, status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      toast.success("You are already login.");
+      router.push("/home");
+    }
+  }, [status, router]);
 
   const handleLogin = async (e) => {
     setLoading(true);
@@ -98,10 +106,10 @@ const Home = () => {
             {/* LINK */}
             <Link
               href={"/signup"}
-              className="text-sm text-center text-gray-600"
+              className="text-sm text-center text-gray-200"
             >
               Dont have account?{" "}
-              <span className="text-blue-500 underline">SignUp!</span>
+              <span className="text-blue-600 underline">SignUp!</span>
             </Link>
 
             {/* BUTTON */}

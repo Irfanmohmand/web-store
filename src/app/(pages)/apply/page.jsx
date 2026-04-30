@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import logo from "@/app/images/logo.png";
+import logo from "@/images/logo.png";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";

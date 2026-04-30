@@ -1,13 +1,14 @@
 "use client";
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsGoogle } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/images/logo.png";
+import { useSession } from "next-auth/react";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -16,8 +17,20 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  // Session
+  const { data, status } = useSession();
+  // console.log("session---------", data, "status-----------", status);
 
   const router = useRouter();
+
+  // if user authenticated then don't show signup page
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      toast.success("You are already login.");
+      router.push("/home");
+    }
+  }, [status, router]);
 
   const handleImage = (e) => {
     const files = e.target.files;
@@ -150,9 +163,9 @@ const SignUp = () => {
             </button>
 
             {/* LINK */}
-            <Link href={"/"} className="text-center text-gray-600 text-sm">
+            <Link href={"/"} className="text-center text-gray-200 text-sm">
               Already have account?{" "}
-              <span className="text-blue-500 underline">SignIn</span>
+              <span className="text-blue-600 underline">SignIn</span>
             </Link>
           </form>
         </div>

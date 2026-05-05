@@ -92,9 +92,9 @@ const authOptions = {
   },
 
   // 🔁 Custom login page
-  pages: {
-    signIn: "/",
-  },
+  // pages: {
+  //   signIn: "/",
+  // },
 
   // 🔐 Secret for JWT signing
   secret: process.env.NEXTAUTH_SECRET,

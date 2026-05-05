@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import crypto from "crypto";
 import { sendVerificationEmail } from "@/lib/sendEmail";
+import bcrypt from 'bcrypt'
 
 export const POST = async (req) => {
   try {
@@ -58,11 +59,13 @@ export const POST = async (req) => {
 
     const token = crypto.randomBytes(32).toString("hex");
 
-    const user = await User.create({
+const hashedPassword = await bcrypt.hash(password, 10);
+
+const user = await User.create({
   name,
   contact,
   email,
-  password,
+  password: hashedPassword, // ✅ hashed
   file: imgUrl,
   verifyToken: token,
   verifyTokenExpiry: Date.now() + 3600000,

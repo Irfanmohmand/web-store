@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/UserModel.js";
 import { dbConnect } from "./db";
+import bcrypt from "bcrypt";
 
 // Main NextAuth config
 const authOptions = {
@@ -31,9 +32,11 @@ const authOptions = {
     throw new Error("Email or password is incorrect");
   }
 
-  if (existUser.password !== password) {
-    throw new Error("Email or password is incorrect");
-  }
+  const isMatch = await bcrypt.compare(password, existUser.password);
+
+if (!isMatch) {
+  throw new Error("Email or password is incorrect");
+}
 
   if (!existUser.isVerified) {
     throw new Error("Please verify your email first");

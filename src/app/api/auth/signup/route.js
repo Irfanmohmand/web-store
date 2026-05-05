@@ -59,14 +59,14 @@ export const POST = async (req) => {
     const token = crypto.randomBytes(32).toString("hex");
 
     const user = await User.create({
-      name,
-      contact,
-      email,
-      password,
-      file: imgUrl,
-      verifyToken: token,
-      verifyTokenExpiry: Date.now() + 3600000,
-    });
+  name,
+  contact,
+  email,
+  password,
+  file: imgUrl,
+  verifyToken: token,
+  verifyTokenExpiry: Date.now() + 3600000,
+});
 
     await sendVerificationEmail(email, token);
 

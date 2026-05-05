@@ -7,6 +7,9 @@ import CourseList from "@/components/CourseList";
 
 const HomePageAfterLogin = () => {
   const { data: session } = useSession();
+  console.log(session);
+  
+  console.log("USER IMAGE:", session?.user?.file);
 
   return (
     <div className="w-full min-h-screen bg-gray-50 text-black">

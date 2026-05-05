@@ -71,7 +71,13 @@ const user = await User.create({
   verifyTokenExpiry: Date.now() + 3600000,
 });
 
-    await sendVerificationEmail(email, token);
+    console.log("🔥 SIGNUP HIT");
+
+console.log("EMAIL:", email);
+
+await sendVerificationEmail(email, token)
+  .then(() => console.log("📧 EMAIL SENT SUCCESS"))
+  .catch((err) => console.log("📧 EMAIL ERROR:", err));
 
     return NextResponse.json(
       {

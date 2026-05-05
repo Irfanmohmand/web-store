@@ -10,7 +10,7 @@ export const sendVerificationEmail = async (email, token) => {
 
   const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: email,
     subject: "Verify your account.",
@@ -20,4 +20,9 @@ export const sendVerificationEmail = async (email, token) => {
     <a href="${verifyUrl}">Verify Email</a>
     `,
   });
+  console.log("MessageId", info.messageId);
+  console.log("Response", info.response);
+
 };
+
+

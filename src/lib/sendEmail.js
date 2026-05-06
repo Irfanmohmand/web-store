@@ -54,15 +54,81 @@ export const sendVerificationEmail = async (email, token) => {
     const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
 
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
+      from: `"Web-Store" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
       to: email,
-      subject: "Verify your account.",
+      subject: "Verify Your Web-Store Account",
+      text: `Hello,\n\nThank you for signing up with Web-Store!\n\nPlease verify your email address by clicking the link below:\n${verifyUrl}\n\nThis link will expire in 1 hour.\n\nIf you didn't create an account, please ignore this email.\n\nBest regards,\nWeb-Store Team`,
       html: `
-        <h2>Email verification</h2>
-        <p>Click below to verify your account.</p>
-        <a href="${verifyUrl}" style="display: inline-block; padding: 10px 20px; background-color: #dc2626; color: white; text-decoration: none; border-radius: 5px;">Verify Email</a>
-        <p style="margin-top: 20px; color: #666;">If the button doesn't work, copy and paste this link:</p>
-        <p style="color: #666;">${verifyUrl}</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+          <table role="presentation" style="width: 100%; border-collapse: collapse;">
+            <tr>
+              <td align="center" style="padding: 40px 0;">
+                <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                  <!-- Header -->
+                  <tr>
+                    <td style="padding: 40px 30px; text-align: center; background: linear-gradient(135deg, #1f2937 0%, #dc2626 100%); border-radius: 8px 8px 0 0;">
+                      <h1 style="margin: 0; color: #ffffff; font-size: 24px;">Web-Store</h1>
+                    </td>
+                  </tr>
+                  
+                  <!-- Body -->
+                  <tr>
+                    <td style="padding: 40px 30px;">
+                      <h2 style="margin: 0 0 20px 0; color: #1f2937; font-size: 20px;">Verify Your Email Address</h2>
+                      <p style="margin: 0 0 20px 0; color: #4b5563; font-size: 16px; line-height: 1.5;">
+                        Thank you for signing up with Web-Store! We're excited to have you join our learning community.
+                      </p>
+                      <p style="margin: 0 0 30px 0; color: #4b5563; font-size: 16px; line-height: 1.5;">
+                        Please verify your email address by clicking the button below:
+                      </p>
+                      
+                      <!-- Button -->
+                      <table role="presentation" style="margin: 0 auto;">
+                        <tr>
+                          <td style="border-radius: 6px; background: linear-gradient(135deg, #1f2937 0%, #dc2626 100%);">
+                            <a href="${verifyUrl}" target="_blank" style="display: inline-block; padding: 14px 40px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 6px;">
+                              Verify Email Address
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                      
+                      <p style="margin: 30px 0 20px 0; color: #6b7280; font-size: 14px; line-height: 1.5;">
+                        If the button doesn't work, copy and paste this link into your browser:
+                      </p>
+                      <p style="margin: 0 0 20px 0; color: #3b82f6; font-size: 14px; word-break: break-all;">
+                        ${verifyUrl}
+                      </p>
+                      
+                      <p style="margin: 20px 0 0 0; color: #6b7280; font-size: 14px; line-height: 1.5;">
+                        <strong>Note:</strong> This verification link will expire in 1 hour for security reasons.
+                      </p>
+                    </td>
+                  </tr>
+                  
+                  <!-- Footer -->
+                  <tr>
+                    <td style="padding: 30px; background-color: #f9fafb; border-radius: 0 0 8px 8px; text-align: center;">
+                      <p style="margin: 0 0 10px 0; color: #6b7280; font-size: 12px;">
+                        If you didn't create an account with Web-Store, please ignore this email.
+                      </p>
+                      <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                        © ${new Date().getFullYear()} Web-Store. All rights reserved.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </body>
+        </html>
       `,
     });
 

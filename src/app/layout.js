@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import ClientProvider from "../components/ClientProvider";
 import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
+import WelcomeModal from "@/components/WelcomeModal";
 
 const nunito = Nunito_Sans({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
           <Toaster />
+          <WelcomeModal />
         </ClientProvider>
       </body>
     </html>

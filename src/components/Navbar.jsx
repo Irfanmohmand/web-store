@@ -132,6 +132,8 @@ const Navbar = () => {
                       <Link href="/courses">Courses</Link>
                       <Link href="/favorites">My Favorites</Link>
                       <Link href="/editProfile">Edit Profile</Link>
+                      <Link href="/apply">Reserve Your Seat</Link>
+
                     </>
                   )}
                 </div>

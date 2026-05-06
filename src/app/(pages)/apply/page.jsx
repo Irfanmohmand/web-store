@@ -56,7 +56,7 @@ const Apply = () => {
       setAvailability("");
       setGoal("");
 
-      router.push("/pages/home");
+      router.push("/home");
     } catch (error) {
       toast.error(error.response?.data?.message);
     }

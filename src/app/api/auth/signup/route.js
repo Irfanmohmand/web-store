@@ -75,9 +75,12 @@ const user = await User.create({
 
 console.log("EMAIL:", email);
 
-await sendVerificationEmail(email, token)
-  .then(() => console.log("📧 EMAIL SENT SUCCESS"))
-  .catch((err) => console.log("📧 EMAIL ERROR:", err));
+try {
+  await sendVerificationEmail(email, token);
+  console.log("📧 EMAIL SENT SUCCESS");
+} catch (err) {
+  console.log("📧 EMAIL ERROR:", err);
+}
 
     return NextResponse.json(
       {

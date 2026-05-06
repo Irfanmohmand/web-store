@@ -1,28 +1,34 @@
 import nodemailer from "nodemailer";
+
 export const sendVerificationEmail = async (email, token) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
 
-  const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
+    const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
 
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: "Verify your account.",
-    html: `
-    <h2>Email verification</h2>
-    <p>Click below to verify your account.</p>
-    <a href="${verifyUrl}">Verify Email</a>
-    `,
-  });
-  console.log("MessageId", info.messageId);
-  console.log("Response", info.response);
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Verify your account.",
+      html: `
+        <h2>Email verification</h2>
+        <p>Click below to verify your account.</p>
+        <a href="${verifyUrl}">Verify Email</a>
+      `,
+    });
 
+    console.log("📧 MessageId:", info.messageId);
+    console.log("📧 Response:", info.response);
+
+    return info;
+  } catch (error) {
+    console.error("❌ EMAIL SEND FAILED:", error);
+    throw error;
+  }
 };
-
-

@@ -40,9 +40,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "user",
     },
+
+    favorites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AddCourse",
+      },
+    ],
   },
   { timestamps: true },
 );
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+// Clear the model cache to ensure schema updates are recognized
+if (mongoose.models.User) {
+  delete mongoose.models.User;
+}
+
+const User = mongoose.model("User", userSchema);
 export default User;

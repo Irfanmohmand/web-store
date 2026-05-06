@@ -85,18 +85,10 @@ const Navbar = () => {
 
           {/* RIGHT SIDE */}
           <div className="flex items-center gap-3">
-            {/* SEARCH */}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-gray-700 rounded-full">
-              <BiSearch className="text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search under construction..."
-                className="bg-transparent outline-none text-sm text-white w-24 sm:w-32"
-              />
-            </div>
+
 
             {/* PROFILE */}
-            <div className="relative">
+            <div className="relative z-10">
               <div
                 onClick={() => setShowProfile(!showProfile)}
                 className="w-9 h-9 rounded-full overflow-hidden cursor-pointer border border-red-500"
@@ -130,6 +122,7 @@ const Navbar = () => {
                 <div className="p-3 flex flex-col gap-2 text-sm">
                   {session?.user?.role === "admin" ? (
                     <>
+                      <Link href="/admin/dashboard">Dashboard</Link>
                       <Link href="/addCourse">Add Course</Link>
                       <Link href="/getUsers">Get Users</Link>
                       <Link href="/editProfile">Edit Profile</Link>
@@ -137,6 +130,7 @@ const Navbar = () => {
                   ) : (
                     <>
                       <Link href="/courses">Courses</Link>
+                      <Link href="/favorites">My Favorites</Link>
                       <Link href="/editProfile">Edit Profile</Link>
                     </>
                   )}

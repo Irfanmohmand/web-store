@@ -174,7 +174,7 @@ const CourseList = () => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      router.push("/");
+                      router.push("/apply");
                     }}
                     className="text-sm border border-indigo-600 rounded-lg px-3 py-1 text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
                   >

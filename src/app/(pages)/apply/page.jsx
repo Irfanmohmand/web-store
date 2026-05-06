@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "@/images/logo.png";
 import Image from "next/image";
 import axios from "axios";
@@ -13,7 +13,26 @@ const Apply = () => {
   const [level, setLevel] = useState("");
   const [availability, setAvailability] = useState("");
   const [goal, setGoal] = useState("");
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+
+  // Fetch courses from database
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get("/api/getCourses");
+        setCourses(response.data.courses || []);
+      } catch (error) {
+        console.error("Failed to fetch courses:", error);
+        toast.error("Failed to load courses");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   const handleApply = async (e) => {
     e.preventDefault();
@@ -78,22 +97,20 @@ const Apply = () => {
             value={course}
             onChange={(e) => setCourse(e.target.value)}
             className="bg-white/10 px-3 py-2 rounded-lg outline-none"
+            disabled={loading}
           >
             <option value="" className="text-black">
-              Select Course
+              {loading ? "Loading courses..." : "Select Course"}
             </option>
-            <option value="html" className="text-black">
-              Frontend
-            </option>
-            <option value="css" className="text-black">
-              React
-            </option>
-            <option value="javascript" className="text-black">
-              NextJs
-            </option>
-            <option value="react" className="text-black">
-              MongoDB
-            </option>
+            {courses.map((courseItem) => (
+              <option
+                key={courseItem._id}
+                value={courseItem.title}
+                className="text-black"
+              >
+                {courseItem.title}
+              </option>
+            ))}
           </select>
 
           <select

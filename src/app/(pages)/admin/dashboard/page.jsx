@@ -10,7 +10,6 @@ import {
   FiUserX,
   FiShield,
   FiBook,
-  FiHeart,
   FiTrendingUp,
   FiActivity,
   FiSettings,
@@ -18,8 +17,9 @@ import {
   FiEdit,
   FiTrash2,
   FiDatabase,
+  FiFileText,
 } from "react-icons/fi";
-import { Line, Doughnut } from "react-chartjs-2";
+import { Doughnut, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -216,12 +216,13 @@ export default function AdminDashboard() {
             link="/courses"
           />
           <StatCard
-            icon={FiShield}
-            title="Admin Users"
-            value={stats?.adminUsers || 0}
-            color="text-orange-600"
-            bgColor="bg-orange-50"
-            link="/getUsers"
+            icon={FiFileText}
+            title="Applications"
+            value={stats?.totalApplications || 0}
+            change={`+${stats?.applicationsToday || 0} today`}
+            color="text-cyan-600"
+            bgColor="bg-cyan-50"
+            link="/admin/applications"
           />
         </div>
 
@@ -301,6 +302,13 @@ export default function AdminDashboard() {
               description="Remove courses from database"
               link="/deleteCourse"
               color="#ef4444"
+            />
+            <QuickAction
+              icon={FiFileText}
+              title="View Applications"
+              description="See all course applications"
+              link="/admin/applications"
+              color="#06b6d4"
             />
             <QuickAction
               icon={FiDatabase}

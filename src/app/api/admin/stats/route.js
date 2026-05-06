@@ -1,4 +1,5 @@
 import User from "@/models/UserModel";
+import Admissions from "@/models/Admission";
 import authOptions from "@/lib/auth";
 import { dbConnect } from "@/lib/db";
 import { getServerSession } from "next-auth";
@@ -56,6 +57,15 @@ export const GET = async (req) => {
       .sort({ createdAt: -1 })
       .limit(5);
 
+    // Get application statistics
+    const totalApplications = await Admissions.countDocuments();
+    const applicationsToday = await Admissions.countDocuments({
+      createdAt: { $gte: today },
+    });
+    const applicationsThisWeek = await Admissions.countDocuments({
+      createdAt: { $gte: sevenDaysAgo },
+    });
+
     return NextResponse.json(
       {
         message: "Statistics fetched successfully",
@@ -71,6 +81,9 @@ export const GET = async (req) => {
             totalUsers > 0
               ? ((verifiedUsers / totalUsers) * 100).toFixed(1)
               : 0,
+          totalApplications,
+          applicationsToday,
+          applicationsThisWeek,
         },
         latestUsers,
       },

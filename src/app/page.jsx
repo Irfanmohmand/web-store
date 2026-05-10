@@ -24,10 +24,10 @@ const Home = () => {
   }, [status, router]);
 
   const handleLogin = async (e) => {
-    setLoading(true);
     e.preventDefault();
 
     try {
+      setLoading(true);
       const result = await signIn("credentials", {
         email,
         password,
@@ -35,6 +35,7 @@ const Home = () => {
       });
 
       if (result?.error) {
+        setLoading(false);
         toast.error(result.error);
         return;
       }
